@@ -14,19 +14,20 @@ class TodoList : public TodoListInterface {
 public:
 		vector <string> tasks;
     TodoList() {
-			cout << "In constructor" << endl;
+			//cout << "In constructor" << endl;
 			ifstream inFile ("TODOList.txt");
 			string line;
 			if(inFile.is_open()) {
 				while(getline (inFile, line)) {
 					cout << line << '\n';
+					tasks.push_back(line);
 				}
 				inFile.close();
 			}
 
 		}
     virtual ~TodoList() {
-			cout << "In destructor" << endl;
+			//cout << "In destructor" << endl;
 			ofstream outFile;
 			outFile.open("TODOList.txt", ofstream::out | ofstream::trunc);
 			for(int i = 0; i < tasks.size(); ++i) {
@@ -39,8 +40,9 @@ public:
     *   Adds an item to the todo list with the data specified by the string "_duedate" and the task specified by "_task"
     */
     virtual void add(string _duedate, string _task) {
-			cout << "In add" << endl;
-			tasks.push_back(_duedate + " " + _task);
+			//cout << "In add" << endl;
+			tasks.push_back(_duedate);
+			tasks.push_back(_task);
 		}
 
     /*
@@ -49,17 +51,23 @@ public:
     *   Returns 1 if it removes an item, 0 otherwise
     */
     virtual int remove(string _task) {
-			cout << "In remove" << endl;
-			auto match = find(tasks.begin(), tasks.end(), _task);
+			//cout << "In remove" << endl;
+			for(int i = 0; i < tasks.size(); ++i) {
+				if(tasks[i] == _task) {
+					tasks.erase(tasks.begin() + i);
+					tasks.erase(tasks.begin() + (i-1));
+				}
+			}
 		}
 
     /*
     *   Prints out the full todo list to the console
     */
     virtual void printTodoList() {
-			cout << "In print" << endl;
+			//cout << "In print" << endl;
+			cout << "---- TODO LIST ----" << endl;
 			for(int i = 0; i < tasks.size(); ++i) {
-				cout << tasks.at(i) << endl;
+				cout << tasks[i] << endl;
 			}
 		}
     
@@ -67,7 +75,13 @@ public:
     *   Prints out all items of a todo list with a particular due date (specified by _duedate)
     */
     virtual void printDaysTasks(string _date) {
-			cout << "In print days" << endl;
+			//cout << "In print days" << endl;
+			cout << "---- " << _date << "'s tasks ----" << endl; 
+			for(int i = 0; i < tasks.size(); ++i) {
+				if(tasks[i] == _date) {
+					cout << tasks[i] << " " << tasks[i+1] << endl;
+				}
+			}
 		}
 };
 
