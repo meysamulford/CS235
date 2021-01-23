@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <algorithm>
 #include "TodoListInterface.h"
 
 using namespace std;
@@ -49,6 +50,7 @@ public:
     */
     virtual int remove(string _task) {
 			cout << "In remove" << endl;
+			auto match = find(tasks.begin(), tasks.end(), _task);
 		}
 
     /*
@@ -56,6 +58,9 @@ public:
     */
     virtual void printTodoList() {
 			cout << "In print" << endl;
+			for(int i = 0; i < tasks.size(); ++i) {
+				cout << tasks.at(i) << endl;
+			}
 		}
     
     /*

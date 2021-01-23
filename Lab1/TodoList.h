@@ -11,8 +11,8 @@ using namespace std;
 
 class TodoList : public TodoListInterface {
 public:
-		vector <string> daysList;
-		vector <string> taskList;
+		const vector <string> &daysList;
+		vector <string> &taskList;
 		//constructor
     TodoList() {
 			cout << "This is constructor" << endl;
@@ -75,7 +75,7 @@ public:
 			cout << "This is print" << endl;
 			for(int i = 0; i < daysList.size(); ++i) {
 				cout << daysList[i] << endl;
-				//cout << taskList[i] << endl;
+				cout << taskList[i] << endl;
 			}
 		}
     

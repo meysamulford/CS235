@@ -5,6 +5,7 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 	TodoList myList;
+	//why won't it let me pass by reference?
   for(int i = 0; i < argc; i++) {
     cout << "argv[" << i << "]=" << argv[i] << endl;
   }
