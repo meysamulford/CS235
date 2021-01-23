@@ -6,7 +6,6 @@
 #include "TodoListInterface.h"
 #include <fstream>
 #include <vector>
-//#include <ofstream>
 
 using namespace std;
 
@@ -21,7 +20,7 @@ public:
 			string line;
 			if (infile.is_open()) {
 				while (getline (infile, line)) {
-					cout << line << endl;
+					//cout << line << endl;
 					daysList.push_back(line);
 					taskList.push_back(line);
 				}
