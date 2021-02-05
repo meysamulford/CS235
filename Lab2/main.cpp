@@ -91,7 +91,7 @@ int main(int argc, char *argv[]){
 // cout << endl;
 
 //Part 6: create text that follows patterns of the English language
-	const int M = 4;
+	const int M = 3;
 	map<list<string>, vector<string>> wordmap;
   list<string> state;
   for (int i = 0; i < M; i++) {
